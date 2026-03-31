@@ -16,7 +16,8 @@
     "cap:sync": "npx cap sync",
     "cap:open:android": "npx cap open android",
     "cap:open:ios": "npx cap open ios",
-    "prepare": "vp config"
+    "prepare": "vp config",
+    "lint": "vp lint && vp fmt --write"
   },
   "dependencies": {
     "@capacitor/camera": "latest",

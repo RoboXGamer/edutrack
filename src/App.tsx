@@ -1,6 +1,7 @@
 import { type Component, createTrackedEffect } from "solid-js";
 import { SimpleRouter, SimpleRoute } from "./router";
 import { SplashScreen } from "@capacitor/splash-screen";
+import { sampleData } from "./data/sampleData";
 
 import HomePage from "./pages/HomePage";
 import LearnPage from "./pages/LearnPage";
@@ -8,6 +9,16 @@ import CoursePage from "./pages/CoursePage";
 import LessonPage from "./pages/LessonPage";
 import StatsPage from "./pages/StatsPage";
 import ProgressPage from "./pages/ProgressPage";
+import UploadPage from "./pages/UploadPage";
+
+const seedData = () => {
+  if (!localStorage.getItem("edutrack_subjects")) {
+    const subjects = [{ ...sampleData, id: "1" }];
+    localStorage.setItem("edutrack_subjects", JSON.stringify(subjects));
+  }
+};
+
+seedData();
 
 const App: Component = () => {
   createTrackedEffect(() => {
@@ -25,6 +36,7 @@ const App: Component = () => {
         <SimpleRoute path="/quiz/:subjectId/:lessonId" component={() => <div>Quiz Page</div>} />
         <SimpleRoute path="/stats/:subjectId" component={() => <StatsPage />} />
         <SimpleRoute path="/progress" component={() => <ProgressPage />} />
+        <SimpleRoute path="/upload" component={() => <UploadPage />} />
       </div>
     </SimpleRouter>
   );

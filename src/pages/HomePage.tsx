@@ -1,6 +1,6 @@
-import { createSignal, createMemo, type Component, For, Show, createTrackedEffect } from "solid-js";
+import { createSignal, createMemo, type Component, For, createTrackedEffect } from "solid-js";
 import { useNavigate } from "../router";
-import { Plus, Search, ChevronRight, X, Flame, Target, BookOpen } from "../components/Icons";
+import { Plus, Search, ChevronRight, Flame, Target, BookOpen } from "../components/Icons";
 import BottomNav from "../components/BottomNav";
 
 const subjectEmojis: Record<string, string> = {
