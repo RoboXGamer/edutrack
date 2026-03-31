@@ -1,5 +1,5 @@
 export const sampleData = {
-  subjectName: "Ancient History",
+  name: "Ancient History",
   courseData: {
     units: [
       {
