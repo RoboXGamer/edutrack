@@ -1,0 +1,10 @@
+{
+  "appId": "com.creativeminds.studyboost",
+  "appName": "studyboost",
+  "webDir": "dist",
+  "plugins": {
+    "SplashScreen": {
+      "launchAutoHide": false
+    }
+  }
+}
