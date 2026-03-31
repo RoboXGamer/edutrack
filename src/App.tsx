@@ -6,6 +6,8 @@ import HomePage from "./pages/HomePage";
 import LearnPage from "./pages/LearnPage";
 import CoursePage from "./pages/CoursePage";
 import LessonPage from "./pages/LessonPage";
+import StatsPage from "./pages/StatsPage";
+import ProgressPage from "./pages/ProgressPage";
 
 const App: Component = () => {
   createTrackedEffect(() => {
@@ -20,10 +22,9 @@ const App: Component = () => {
         <SimpleRoute path="/learn" component={() => <LearnPage />} />
         <SimpleRoute path="/course/:subjectId" component={() => <CoursePage />} />
         <SimpleRoute path="/lesson/:subjectId/:lessonId" component={() => <LessonPage />} />
-        {/* Placeholder routes - we will add these as we port pages */}
         <SimpleRoute path="/quiz/:subjectId/:lessonId" component={() => <div>Quiz Page</div>} />
-        <SimpleRoute path="/stats/:subjectId" component={() => <div>Stats Page</div>} />
-        <SimpleRoute path="/progress" component={() => <div>Progress Page</div>} />
+        <SimpleRoute path="/stats/:subjectId" component={() => <StatsPage />} />
+        <SimpleRoute path="/progress" component={() => <ProgressPage />} />
       </div>
     </SimpleRouter>
   );
