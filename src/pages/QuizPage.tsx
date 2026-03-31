@@ -24,6 +24,14 @@ const QuizPage: Component = () => {
   const [showExplanation, setShowExplanation] = createSignal(false);
   const [startTime, setStartTime] = createSignal(0);
   const [elapsed, setElapsed] = createSignal(0);
+  const [existingScore, setExistingScore] = createSignal<{
+    score: number;
+    correct: number;
+    total: number;
+    attempts: number;
+    bestScore: number;
+    lastAttempt: string;
+  } | null>(null);
 
   const totalQuestions = createMemo(() => questions().length);
   const answeredCount = createMemo(() => Object.keys(answers()).length);
@@ -69,7 +77,18 @@ const QuizPage: Component = () => {
       setLessonTitle(foundLesson?.title || "Practice");
     }
 
-    setQuizState("intro");
+    const prog = JSON.parse(localStorage.getItem("edutrack_progress") || "{}");
+    const subProg = prog[subjectId] || {};
+    const existing = subProg.quizScores?.[lessonId];
+    if (existing) {
+      setExistingScore(existing);
+      setQuizState("results");
+      setElapsed(0);
+    } else {
+      setExistingScore(null);
+      setQuizState("intro");
+    }
+
     setCurrentIndex(0);
     setAnswers({});
     setSelectedOption(null);
@@ -493,68 +512,152 @@ const QuizPage: Component = () => {
                 <p class="text-sm text-muted-foreground">{lessonTitle()}</p>
               </div>
 
-              <div class="flex items-center justify-center">
-                <div class="relative w-32 h-32 sm:w-36 sm:h-36">
-                  <svg class="w-full h-full transform -rotate-90" viewBox="0 0 36 36">
-                    <path
-                      d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"
-                      fill="none"
-                      stroke="hsl(var(--muted))"
-                      stroke-width="3"
-                    />
-                    <path
-                      d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"
-                      fill="none"
-                      stroke={scorePercent() >= 70 ? "hsl(var(--success))" : "hsl(var(--warning))"}
-                      stroke-width="3"
-                      stroke-dasharray={`${scorePercent()}, 100`}
-                      stroke-linecap="round"
-                      class="transition-all duration-1000"
-                    />
-                  </svg>
-                  <div class="absolute inset-0 flex flex-col items-center justify-center">
-                    <span class="text-2xl sm:text-3xl font-black text-foreground">
-                      {scorePercent()}%
-                    </span>
-                    <span class="text-[10px] font-semibold text-muted-foreground uppercase">
-                      Score
-                    </span>
-                  </div>
-                </div>
-              </div>
+              <Show
+                when={existingScore()}
+                fallback={
+                  <>
+                    <div class="flex items-center justify-center">
+                      <div class="relative w-32 h-32 sm:w-36 sm:h-36">
+                        <svg class="w-full h-full transform -rotate-90" viewBox="0 0 36 36">
+                          <path
+                            d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"
+                            fill="none"
+                            stroke="hsl(var(--muted))"
+                            stroke-width="3"
+                          />
+                          <path
+                            d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"
+                            fill="none"
+                            stroke={
+                              scorePercent() >= 70 ? "hsl(var(--success))" : "hsl(var(--warning))"
+                            }
+                            stroke-width="3"
+                            stroke-dasharray={`${scorePercent()}, 100`}
+                            stroke-linecap="round"
+                            class="transition-all duration-1000"
+                          />
+                        </svg>
+                        <div class="absolute inset-0 flex flex-col items-center justify-center">
+                          <span class="text-2xl sm:text-3xl font-black text-foreground">
+                            {scorePercent()}%
+                          </span>
+                          <span class="text-[10px] font-semibold text-muted-foreground uppercase">
+                            Score
+                          </span>
+                        </div>
+                      </div>
+                    </div>
 
-              <div class="grid grid-cols-3 gap-3">
-                <div class="bg-muted rounded-xl p-3">
-                  <p class="text-lg font-black text-foreground">{correctCount()}</p>
-                  <p class="text-[10px] font-semibold text-muted-foreground uppercase">Correct</p>
-                </div>
-                <div class="bg-muted rounded-xl p-3">
-                  <p class="text-lg font-black text-foreground">
-                    {totalQuestions() - correctCount()}
-                  </p>
-                  <p class="text-[10px] font-semibold text-muted-foreground uppercase">Wrong</p>
-                </div>
-                <div class="bg-muted rounded-xl p-3">
-                  <p class="text-lg font-black text-foreground">{formatTime(elapsed())}</p>
-                  <p class="text-[10px] font-semibold text-muted-foreground uppercase">Time</p>
-                </div>
-              </div>
+                    <div class="grid grid-cols-3 gap-3">
+                      <div class="bg-muted rounded-xl p-3">
+                        <p class="text-lg font-black text-foreground">{correctCount()}</p>
+                        <p class="text-[10px] font-semibold text-muted-foreground uppercase">
+                          Correct
+                        </p>
+                      </div>
+                      <div class="bg-muted rounded-xl p-3">
+                        <p class="text-lg font-black text-foreground">
+                          {totalQuestions() - correctCount()}
+                        </p>
+                        <p class="text-[10px] font-semibold text-muted-foreground uppercase">
+                          Wrong
+                        </p>
+                      </div>
+                      <div class="bg-muted rounded-xl p-3">
+                        <p class="text-lg font-black text-foreground">{formatTime(elapsed())}</p>
+                        <p class="text-[10px] font-semibold text-muted-foreground uppercase">
+                          Time
+                        </p>
+                      </div>
+                    </div>
+                  </>
+                }
+              >
+                {(score) => (
+                  <>
+                    <div class="flex items-center justify-center">
+                      <div class="relative w-32 h-32 sm:w-36 sm:h-36">
+                        <svg class="w-full h-full transform -rotate-90" viewBox="0 0 36 36">
+                          <path
+                            d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"
+                            fill="none"
+                            stroke="hsl(var(--muted))"
+                            stroke-width="3"
+                          />
+                          <path
+                            d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"
+                            fill="none"
+                            stroke={
+                              score().bestScore >= 70
+                                ? "hsl(var(--success))"
+                                : "hsl(var(--warning))"
+                            }
+                            stroke-width="3"
+                            stroke-dasharray={`${score().bestScore}, 100`}
+                            stroke-linecap="round"
+                            class="transition-all duration-1000"
+                          />
+                        </svg>
+                        <div class="absolute inset-0 flex flex-col items-center justify-center">
+                          <span class="text-2xl sm:text-3xl font-black text-foreground">
+                            {score().bestScore}%
+                          </span>
+                          <span class="text-[10px] font-semibold text-muted-foreground uppercase">
+                            Best Score
+                          </span>
+                        </div>
+                      </div>
+                    </div>
 
-              <Show when={scorePercent() >= 70}>
-                <div class="bg-success/10 border border-success/20 rounded-xl p-3 flex items-center gap-2">
-                  <Trophy size={18} class="text-success shrink-0" />
-                  <p class="text-xs font-bold text-success">
-                    Lesson completed! Score above 70% - well done!
+                    <div class="grid grid-cols-3 gap-3">
+                      <div class="bg-muted rounded-xl p-3">
+                        <p class="text-lg font-black text-foreground">{score().correct}</p>
+                        <p class="text-[10px] font-semibold text-muted-foreground uppercase">
+                          Correct
+                        </p>
+                      </div>
+                      <div class="bg-muted rounded-xl p-3">
+                        <p class="text-lg font-black text-foreground">{score().total}</p>
+                        <p class="text-[10px] font-semibold text-muted-foreground uppercase">
+                          Total
+                        </p>
+                      </div>
+                      <div class="bg-muted rounded-xl p-3">
+                        <p class="text-lg font-black text-foreground">{score().attempts}</p>
+                        <p class="text-[10px] font-semibold text-muted-foreground uppercase">
+                          Attempts
+                        </p>
+                      </div>
+                    </div>
+                  </>
+                )}
+              </Show>
+
+              <Show when={existingScore()}>
+                <div class="bg-brand/5 border border-brand/20 rounded-xl p-3 flex items-center gap-2">
+                  <Trophy size={18} class="text-brand shrink-0" />
+                  <p class="text-xs font-bold text-brand">
+                    Already completed! Best score: {existingScore()?.bestScore}%
                   </p>
                 </div>
               </Show>
-              <Show when={scorePercent() < 70}>
-                <div class="bg-warning/10 border border-warning/20 rounded-xl p-3 flex items-center gap-2">
-                  <TrendingUp size={18} class="text-warning shrink-0" />
-                  <p class="text-xs font-bold text-warning">
-                    Need 70% to pass. Review the lesson and try again!
-                  </p>
-                </div>
+              <Show when={!existingScore()}>
+                <Show when={scorePercent() >= 70}>
+                  <div class="bg-success/10 border border-success/20 rounded-xl p-3 flex items-center gap-2">
+                    <Trophy size={18} class="text-success shrink-0" />
+                    <p class="text-xs font-bold text-success">
+                      Lesson completed! Score above 70% - well done!
+                    </p>
+                  </div>
+                </Show>
+                <Show when={scorePercent() < 70}>
+                  <div class="bg-warning/10 border border-warning/20 rounded-xl p-3 flex items-center gap-2">
+                    <TrendingUp size={18} class="text-warning shrink-0" />
+                    <p class="text-xs font-bold text-warning">
+                      Need 70% to pass. Review the lesson and try again!
+                    </p>
+                  </div>
+                </Show>
               </Show>
             </div>
 
@@ -563,13 +666,7 @@ const QuizPage: Component = () => {
                 onClick={retryQuiz}
                 class="flex-1 py-3 bg-muted text-foreground rounded-xl font-semibold hover:bg-muted/80 transition-all active:scale-95 flex items-center justify-center gap-2 text-sm"
               >
-                <RefreshCw size={16} /> Retry
-              </button>
-              <button
-                onClick={goToLesson}
-                class="flex-1 py-3 bg-brand text-brand-foreground rounded-xl font-semibold shadow-lg shadow-brand/20 hover:brightness-110 transition-all active:scale-95 text-sm"
-              >
-                Review Lesson
+                <RefreshCw size={16} /> {existingScore() ? "Retry" : "Retry Quiz"}
               </button>
             </div>
 

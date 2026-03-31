@@ -132,7 +132,11 @@ const CoursePage: Component = () => {
                           return (
                             <button
                               onClick={() =>
-                                navigate(`/lesson/${params().subjectId}/${lesson().id}`)
+                                navigate(
+                                  isPractice()
+                                    ? `/quiz/${params().subjectId}/${lesson().id}`
+                                    : `/lesson/${params().subjectId}/${lesson().id}`,
+                                )
                               }
                               class="w-full px-4 sm:px-5 py-3 sm:py-3.5 flex items-center gap-3 text-left hover:bg-muted/80 transition-all border-t border-border first:border-t-0 active:bg-muted group"
                             >
