@@ -15,7 +15,7 @@ const App: Component = () => {
 
   return (
     <SimpleRouter>
-      <div class="min-h-screen bg-gray-50 font-sans pb-16 transition-colors duration-300">
+      <div class="min-h-screen bg-background font-sans transition-colors duration-300">
         <SimpleRoute path="/" component={() => <HomePage />} />
         <SimpleRoute path="/learn" component={() => <LearnPage />} />
         <SimpleRoute path="/course/:subjectId" component={() => <CoursePage />} />

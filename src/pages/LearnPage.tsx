@@ -61,58 +61,88 @@ const LearnPage: Component = () => {
   };
 
   return (
-    <div class="pb-20 bg-gray-50 min-h-screen">
-      <div class="bg-white px-5 pt-6 pb-4 shadow-sm">
-        <div class="max-w-lg mx-auto">
-          <h1 class="text-xl font-bold text-gray-900">My Subjects</h1>
-          <p class="text-xs text-gray-500 mt-1">{subjects().length} subjects enrolled</p>
+    <div class="pb-20 sm:pb-24 md:pb-28 bg-background min-h-screen">
+      <div class="bg-card px-3 sm:px-5 md:px-8 pt-4 sm:pt-6 pb-4 shadow-sm border-b border-border">
+        <div class="max-w-screen-xl mx-auto flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3">
+          <div>
+            <h1 class="text-xl sm:text-2xl md:text-3xl font-extrabold text-foreground tracking-tight">
+              My Subjects
+            </h1>
+            <p class="text-xs sm:text-sm font-medium text-muted-foreground mt-0.5">
+              {subjects().length} subjects enrolled
+            </p>
+          </div>
+          <button
+            onClick={() => navigate("/upload")}
+            class="hidden sm:flex bg-brand text-brand-foreground px-4 py-2 rounded-xl font-bold shadow-lg shadow-brand/20 hover:brightness-110 transition-all active:scale-95 items-center gap-2 text-sm"
+          >
+            <Plus size={18} />
+            <span>New Subject</span>
+          </button>
         </div>
       </div>
 
-      <div class="max-w-lg mx-auto px-5 mt-4">
+      <div class="max-w-screen-xl mx-auto px-3 sm:px-5 md:px-8 mt-4 md:mt-6">
         <Show
           when={subjects().length > 0}
           fallback={
-            <div class="text-center py-16">
-              <div class="text-5xl mb-4">📚</div>
-              <h3 class="text-lg font-semibold text-gray-800 mb-2">No subjects yet</h3>
-              <p class="text-sm text-gray-500 mb-6">Upload a PDF to create your first course</p>
+            <div class="text-center py-12 sm:py-16 md:py-24 bg-card rounded-2xl border-2 border-dashed border-border shadow-sm px-4 max-w-lg mx-auto">
+              <div class="text-4xl sm:text-5xl md:text-6xl mb-4">📚</div>
+              <h3 class="text-lg sm:text-xl font-bold text-foreground mb-1.5">No subjects yet</h3>
+              <p class="text-xs sm:text-sm text-muted-foreground mb-6 max-w-xs mx-auto">
+                Upload a PDF to create your first personal learning course
+              </p>
               <button
                 onClick={() => navigate("/upload")}
-                class="bg-blue-500 text-white px-6 py-3 rounded-xl font-semibold hover:bg-blue-600 transition-all active:scale-95"
+                class="bg-brand text-brand-foreground px-6 py-3 md:px-8 md:py-4 rounded-xl font-bold shadow-lg shadow-brand/20 hover:brightness-110 transition-all active:scale-95 flex items-center mx-auto text-sm md:text-base"
               >
-                <Plus size={18} class="inline mr-2" /> Upload Subject
+                <Plus size={20} class="mr-1.5" /> Upload Subject
               </button>
             </div>
           }
         >
-          <div class="space-y-3">
+          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 lg:gap-4">
             <For each={subjects()}>
               {(subject) => {
                 const p = () => getProgress(subject());
                 return (
                   <button
                     onClick={() => navigate(`/course/${subject().id}`)}
-                    class="w-full bg-white rounded-2xl p-4 shadow-sm border border-gray-100 text-left hover:shadow-md transition-all active:scale-[0.98]"
+                    class="w-full bg-card rounded-xl p-4 shadow-card border border-border text-left hover:shadow-card-hover hover:border-brand/30 transition-all duration-200 active:scale-[0.99] group h-full flex flex-col"
                   >
-                    <div class="flex items-center gap-3">
-                      <span class="text-3xl">{getSubjectEmoji(subject().name)}</span>
+                    <div class="flex items-center gap-3 mb-3">
+                      <div class="bg-muted p-2.5 md:p-3 rounded-xl group-hover:scale-110 transition-transform shrink-0">
+                        <span class="text-xl sm:text-2xl md:text-3xl">
+                          {getSubjectEmoji(subject().name)}
+                        </span>
+                      </div>
                       <div class="flex-1 min-w-0">
-                        <h3 class="font-semibold text-gray-900">{subject().name}</h3>
-                        <p class="text-xs text-gray-500 mt-0.5">
+                        <h3 class="font-bold text-foreground text-sm sm:text-base md:text-lg tracking-tight group-hover:text-brand transition-colors">
+                          {subject().name}
+                        </h3>
+                        <p class="text-xs font-medium text-muted-foreground mt-0.5">
                           {subject().courseData.units.length} Units · {p().total} Lessons
                         </p>
-                        <div class="mt-2 h-1.5 bg-gray-100 rounded-full overflow-hidden">
-                          <div
-                            class="h-full bg-blue-500 rounded-full transition-all"
-                            style={{ width: `${p().pct}%` }}
-                          />
-                        </div>
-                        <p class="text-[10px] text-gray-400 mt-1">
-                          {p().read} of {p().total} complete · {p().pct}%
-                        </p>
                       </div>
-                      <ChevronRight size={18} class="text-gray-400" />
+                      <ChevronRight
+                        size={18}
+                        class="text-muted-foreground group-hover:text-brand md:hidden transition-colors shrink-0"
+                      />
+                    </div>
+
+                    <div class="mt-auto pt-1.5">
+                      <div class="h-2 bg-muted rounded-full overflow-hidden">
+                        <div
+                          class="h-full bg-brand rounded-full transition-all duration-500"
+                          style={{ width: `${p().pct}%` }}
+                        />
+                      </div>
+                      <div class="flex justify-between items-center mt-2">
+                        <p class="text-[10px] font-bold text-muted-foreground uppercase tracking-wider">
+                          {p().read} / {p().total} COMPLETE
+                        </p>
+                        <p class="text-[10px] font-black text-brand">{p().pct}%</p>
+                      </div>
                     </div>
                   </button>
                 );
@@ -121,10 +151,10 @@ const LearnPage: Component = () => {
 
             <button
               onClick={() => navigate("/upload")}
-              class="w-full bg-blue-500 hover:bg-blue-600 text-white rounded-2xl p-4 flex items-center justify-center gap-2 shadow-lg shadow-blue-500/25 transition-all active:scale-[0.98]"
+              class="w-full bg-brand/5 hover:bg-brand/10 border-2 border-dashed border-brand/20 text-brand rounded-xl py-6 px-4 flex flex-col items-center justify-center gap-2 transition-all active:scale-[0.98] h-full min-h-[120px] sm:hidden"
             >
-              <Plus size={20} />
-              <span class="font-semibold">Upload New Subject</span>
+              <Plus size={28} strokeWidth={2.5} />
+              <span class="font-bold text-base">Upload New Subject</span>
             </button>
           </div>
         </Show>

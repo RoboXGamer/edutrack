@@ -23,6 +23,32 @@ const LessonPage = () => {
     );
   });
 
+  const nextLesson = createMemo(() => {
+    const subjectId = params().subjectId;
+    const lessonId = parseInt(params().lessonId);
+    const stored = JSON.parse(localStorage.getItem("edutrack_subjects") || "[]");
+    const found = stored.find((s: any) => s.id === subjectId);
+    if (!found) return null;
+
+    const allLessons: any[] = [];
+    for (const u of found.courseData.units) {
+      for (const l of u.lessons) {
+        allLessons.push({ ...l, unitId: u.id });
+      }
+    }
+
+    const currentIndex = allLessons.findIndex((l) => l.id === lessonId);
+    if (currentIndex === -1 || currentIndex >= allLessons.length - 1) return null;
+
+    return allLessons[currentIndex + 1];
+  });
+
+  const nextIsQuiz = createMemo(() => {
+    const next = nextLesson();
+    if (!next) return false;
+    return next.type === "practice" || next.title?.toLowerCase().includes("practice");
+  });
+
   createTrackedEffect(() => {
     const subjectId = params().subjectId;
     const lessonIdStr = params().lessonId;
@@ -104,91 +130,123 @@ const LessonPage = () => {
   };
 
   return (
-    <div class="min-h-screen bg-white pb-28">
+    <div class="min-h-screen bg-background pb-24 md:pb-28 lg:pb-32">
       {/* Progress Bar */}
-      <div class="fixed top-0 left-0 right-0 h-1.5 bg-gray-100 z-50">
+      <div class="fixed top-0 left-0 right-0 h-1 bg-muted z-50">
         <div
-          class="h-full bg-green-500 transition-all duration-150 rounded-r-full"
+          class="h-full bg-success transition-all duration-150 rounded-r-full"
           style={{ width: `${scrollProgress()}%` }}
         />
       </div>
 
       {/* Header */}
-      <div class="sticky top-1.5 bg-white/95 backdrop-blur-sm px-5 pt-5 pb-3 border-b border-gray-100 z-40">
-        <div class="max-w-2xl mx-auto flex items-center gap-3">
+      <div class="sticky top-0 bg-card/95 backdrop-blur-md px-3 sm:px-5 md:px-8 pt-3 sm:pt-4 pb-2.5 sm:pb-3 border-b border-border z-40 shadow-sm">
+        <div class="max-w-3xl mx-auto flex items-center gap-2.5 sm:gap-3">
           <button
-            onClick={() => navigate(-1)}
-            class="p-2 -ml-2 hover:bg-gray-100 rounded-xl transition-colors"
+            onClick={() => navigate(`/course/${params().subjectId}`)}
+            aria-label="Go back"
+            class="p-1.5 -ml-1 hover:bg-muted rounded-lg transition-all active:scale-90 shrink-0"
           >
-            <ArrowLeft size={22} class="text-gray-700" />
+            <ArrowLeft size={20} class="text-foreground sm:w-5 sm:h-5" />
           </button>
           <div class="flex-1 min-w-0">
-            <h1 class="text-base font-bold text-gray-900 truncate">
+            <h1 class="text-xs sm:text-sm md:text-base font-extrabold text-foreground truncate tracking-tight">
               {currentLesson()?.title || "Loading..."}
             </h1>
-            <p class="text-xs text-gray-500">{currentLesson()?.duration || ""} read</p>
+            <p class="text-[9px] sm:text-[10px] font-semibold text-muted-foreground uppercase tracking-widest mt-0.5">
+              {currentLesson()?.duration || ""} READ
+            </p>
           </div>
           <Show when={isRead()}>
-            <span class="text-xs bg-green-100 text-green-700 px-2.5 py-1 rounded-full font-medium">
-              Completed
-            </span>
+            <div class="flex items-center gap-1 bg-success/10 text-success px-2 sm:px-2.5 py-1 rounded-full border border-success/20 shadow-sm shrink-0">
+              <CheckCircle size={12} fill="currentColor" class="opacity-20" />
+              <span class="text-[9px] sm:text-[10px] font-bold uppercase tracking-wider">Done</span>
+            </div>
           </Show>
         </div>
       </div>
 
-      {/* Content */}
-      <div class="max-w-2xl mx-auto px-5 mt-6">
-        <div class="flex items-center gap-2 mb-6">
-          <BookOpen size={18} class="text-blue-500" />
-          <span class="text-sm text-gray-500">
-            Estimated read time: {currentLesson()?.duration}
+      {/* Content Container */}
+      <div class="max-w-3xl mx-auto px-3 sm:px-5 md:px-8 mt-4 sm:mt-6 md:mt-8">
+        <div class="flex items-center gap-2 mb-4 sm:mb-6 bg-brand/10 p-2.5 rounded-xl border border-brand/20 w-fit">
+          <BookOpen size={16} class="text-brand sm:w-4 sm:h-4" />
+          <span class="text-xs sm:text-sm font-semibold text-brand">
+            Read time: {currentLesson()?.duration}
           </span>
         </div>
 
-        <div class="prose prose-gray max-w-none">
+        <article class="space-y-3 sm:space-y-4">
           <For each={lessonParagraphs()}>
-            {(para) => <p class="text-gray-700 leading-relaxed mb-4 text-[15px]">{para()}</p>}
+            {(para) => (
+              <p class="text-foreground/90 leading-relaxed text-sm sm:text-base tracking-normal font-normal">
+                {para()}
+              </p>
+            )}
           </For>
-        </div>
+        </article>
       </div>
 
       {/* Bottom Action */}
-      <div class="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-100 p-4 z-40">
-        <div class="max-w-2xl mx-auto">
+      <div class="fixed bottom-0 left-0 right-0 bg-card/90 backdrop-blur-lg border-t border-border p-3 sm:p-4 z-40 pb-[calc(0.5rem+env(safe-area-inset-bottom))]">
+        <div class="max-w-3xl mx-auto">
           <Show
             when={isPracticeLesson()}
             fallback={
-              <>
+              <Show
+                when={nextIsQuiz()}
+                fallback={
+                  <button
+                    onClick={() => {
+                      markAsDone();
+                      const next = nextLesson();
+                      if (next) {
+                        navigate(`/lesson/${params().subjectId}/${next.id}`);
+                      }
+                    }}
+                    class="w-full py-2.5 sm:py-3 rounded-xl font-semibold bg-brand text-brand-foreground hover:brightness-110 shadow-lg shadow-brand/20 transition-all flex items-center justify-center gap-2 active:scale-95 text-sm"
+                  >
+                    Continue →
+                  </button>
+                }
+              >
                 <button
-                  onClick={() => navigate(`/quiz/${params().subjectId}/${params().lessonId}`)}
+                  onClick={() => {
+                    markAsDone();
+                    const next = nextLesson();
+                    if (next) {
+                      navigate(`/quiz/${params().subjectId}/${next.id}`);
+                    }
+                  }}
                   class={{
-                    "w-full py-3.5 rounded-xl font-semibold bg-blue-500 text-white hover:bg-blue-600 shadow-lg shadow-blue-500/25 transition-all flex items-center justify-center gap-2 active:scale-95": true,
-                    "animate-pulse ring-2 ring-blue-300 ring-offset-2": atBottom(),
+                    "w-full py-2.5 sm:py-3 rounded-xl font-semibold bg-brand text-brand-foreground hover:brightness-110 shadow-lg shadow-brand/20 transition-all flex items-center justify-center gap-2 active:scale-95 text-sm": true,
+                    "animate-pulse ring-2 ring-brand/30 ring-offset-2 ring-offset-background":
+                      atBottom(),
                   }}
                 >
                   Take Quiz →
                 </button>
                 <Show when={!isRead()}>
-                  <p class="text-[10px] text-gray-400 text-center mt-2">
+                  <p class="text-[10px] text-muted-foreground text-center mt-1.5">
                     Score 70% or above to complete this lesson
                   </p>
                 </Show>
-              </>
+              </Show>
             }
           >
             <button
               onClick={markAsDone}
               class={{
-                "w-full py-3.5 rounded-xl font-semibold transition-all flex items-center justify-center gap-2": true,
-                "bg-gray-200 text-gray-500 cursor-default": isRead(),
-                "bg-green-500 text-white hover:bg-green-600 shadow-lg shadow-green-500/25 active:scale-95":
+                "w-full py-2.5 sm:py-3 rounded-xl font-semibold transition-all flex items-center justify-center gap-2 text-sm": true,
+                "bg-muted text-muted-foreground cursor-default": isRead(),
+                "bg-success text-success-foreground hover:brightness-110 shadow-lg shadow-success/20 active:scale-95":
                   !isRead(),
-                "animate-pulse ring-2 ring-green-300 ring-offset-2": !isRead() && atBottom(),
+                "animate-pulse ring-2 ring-success/30 ring-offset-2 ring-offset-background":
+                  !isRead() && atBottom(),
               }}
               disabled={isRead()}
             >
               <Show when={isRead()} fallback="Mark as Done">
-                <CheckCircle size={18} /> Done
+                <CheckCircle size={16} /> Done
               </Show>
             </button>
           </Show>
