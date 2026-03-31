@@ -24,6 +24,36 @@ export const sampleData = {
             mcqs: 8,
             content:
               "Pre-history refers to the period before the invention of writing. The study of pre-history relies on archaeological sources, including tools, pottery, cave paintings, and fossils. These sources help historians understand how early humans lived, hunted, and organized their societies.\n\nArchaeological excavations at sites like Bhimbetka, Hunsgi, and Mehrgarh have provided crucial evidence about prehistoric India. Stone tools, microliths, and megalithic structures serve as primary sources. Radiocarbon dating and other scientific methods help establish chronologies.\n\nThe sources of pre-history can be classified into: (1) Archaeological sources - tools, weapons, pottery, ornaments, (2) Geological sources - rock formations, soil layers, (3) Biological sources - fossils, skeletal remains, (4) Anthropological sources - study of living tribal communities whose lifestyle resembles prehistoric patterns.",
+          },
+          {
+            id: 2,
+            unitId: 1,
+            title: "Pre-Historic Society",
+            duration: "8m",
+            type: "lesson",
+            mcqs: 8,
+            content:
+              "Prehistoric society was characterized by small groups of hunter-gatherers who lived in caves or temporary shelters. These communities were typically nomadic, moving from place to place in search of food and water.\n\nSocial organization was based on kinship ties and the division of labor between men and women. Men primarily hunted while women gathered plant foods, roots, and fruits. The discovery of fire was a transformative event that changed social dynamics, enabling cooking, warmth, and protection from predators.\n\nAs communities grew, social hierarchies began to emerge. Evidence of burial practices suggests beliefs about the afterlife, while cave paintings indicate artistic expression and possibly religious rituals. The transition from food-gathering to food-producing marked the beginning of settled life.",
+          },
+          {
+            id: 3,
+            unitId: 1,
+            title: "Prehistoric Art",
+            duration: "5m",
+            type: "lesson",
+            mcqs: 6,
+            content:
+              "Prehistoric art in India is best represented by the cave paintings of Bhimbetka in Madhya Pradesh, which date back to approximately 30,000 years ago. These paintings depict hunting scenes, dancing, and daily life activities using natural pigments.\n\nThe colors used include red ochre, white chalk, and green made from plant extracts. Animals like bison, deer, elephants, and tigers are commonly depicted. Human figures are shown in dynamic poses, suggesting movement and activity.\n\nRock art has been found across India - from Kashmir to Tamil Nadu. The art evolved from simple geometric patterns in the Paleolithic period to more complex narrative scenes in the Mesolithic period, and eventually to agricultural themes in the Neolithic period.",
+          },
+          {
+            id: 4,
+            unitId: 1,
+            title: "Practice Sheet 1",
+            duration: "15m",
+            type: "practice",
+            mcqs: 24,
+            content:
+              "Practice questions covering Sources of Pre History, Pre-Historic Society, and Prehistoric Art.",
             questions: [
               {
                 id: 1,
@@ -64,14 +94,6 @@ export const sampleData = {
               },
               {
                 id: 5,
-                question: "Megalithic structures are associated with which type of source?",
-                options: ["Geological", "Biological", "Archaeological", "Anthropological"],
-                correct: 2,
-                explanation:
-                  "Megalithic structures (large stone structures) are archaeological sources that provide evidence of prehistoric burial practices and social organization.",
-              },
-              {
-                id: 6,
                 question:
                   "Study of living tribal communities to understand prehistory is which type of source?",
                 options: ["Archaeological", "Geological", "Biological", "Anthropological"],
@@ -80,40 +102,7 @@ export const sampleData = {
                   "Anthropological sources include the study of living tribal communities whose lifestyle resembles prehistoric patterns.",
               },
               {
-                id: 7,
-                question: "Fossils and skeletal remains are classified as:",
-                options: [
-                  "Archaeological sources",
-                  "Geological sources",
-                  "Biological sources",
-                  "Anthropological sources",
-                ],
-                correct: 2,
-                explanation:
-                  "Fossils and skeletal remains are biological sources that help understand prehistoric life forms and human evolution.",
-              },
-              {
-                id: 8,
-                question: "Rock formations and soil layers are which type of prehistoric source?",
-                options: ["Archaeological", "Geological", "Biological", "Anthropological"],
-                correct: 1,
-                explanation:
-                  "Geological sources include rock formations and soil layers that provide context for prehistoric habitation and environmental conditions.",
-              },
-            ],
-          },
-          {
-            id: 2,
-            unitId: 1,
-            title: "Pre-Historic Society",
-            duration: "8m",
-            type: "lesson",
-            mcqs: 8,
-            content:
-              "Prehistoric society was characterized by small groups of hunter-gatherers who lived in caves or temporary shelters. These communities were typically nomadic, moving from place to place in search of food and water.\n\nSocial organization was based on kinship ties and the division of labor between men and women. Men primarily hunted while women gathered plant foods, roots, and fruits. The discovery of fire was a transformative event that changed social dynamics, enabling cooking, warmth, and protection from predators.\n\nAs communities grew, social hierarchies began to emerge. Evidence of burial practices suggests beliefs about the afterlife, while cave paintings indicate artistic expression and possibly religious rituals. The transition from food-gathering to food-producing marked the beginning of settled life.",
-            questions: [
-              {
-                id: 1,
+                id: 6,
                 question: "Prehistoric communities were primarily:",
                 options: [
                   "Agricultural",
@@ -126,7 +115,7 @@ export const sampleData = {
                   "Prehistoric societies were nomadic hunter-gatherers who moved in search of food and water.",
               },
               {
-                id: 2,
+                id: 7,
                 question: "Social organization in prehistoric times was based on:",
                 options: ["Wealth", "Kinship ties", "Written laws", "Military power"],
                 correct: 1,
@@ -134,7 +123,7 @@ export const sampleData = {
                   "Kinship ties formed the basis of social organization in prehistoric communities.",
               },
               {
-                id: 3,
+                id: 8,
                 question: "The discovery that transformed social dynamics was:",
                 options: ["Agriculture", "Fire", "Metals", "Pottery"],
                 correct: 1,
@@ -142,7 +131,7 @@ export const sampleData = {
                   "The discovery of fire enabled cooking, warmth, and protection, fundamentally changing social dynamics.",
               },
               {
-                id: 4,
+                id: 9,
                 question: "Evidence of burial practices suggests:",
                 options: [
                   "Trade networks",
@@ -155,7 +144,7 @@ export const sampleData = {
                   "Burial practices with grave goods suggest that prehistoric people had beliefs about the afterlife.",
               },
               {
-                id: 5,
+                id: 10,
                 question: "The transition from food-gathering to food-producing marked:",
                 options: [
                   "End of pre-history",
@@ -168,53 +157,7 @@ export const sampleData = {
                   "The shift to food production (agriculture) marked the beginning of settled life and permanent communities.",
               },
               {
-                id: 6,
-                question: "Division of labor in prehistoric society was primarily between:",
-                options: [
-                  "Rich and poor",
-                  "Men and women",
-                  "Elders and youth",
-                  "Leaders and followers",
-                ],
-                correct: 1,
-                explanation:
-                  "Men primarily hunted while women gathered plant foods, roots, and fruits.",
-              },
-              {
-                id: 7,
-                question: "Prehistoric people primarily lived in:",
-                options: ["Stone houses", "Caves and temporary shelters", "Mud villages", "Boats"],
-                correct: 1,
-                explanation:
-                  "Prehistoric communities lived in caves or temporary shelters as they were nomadic.",
-              },
-              {
-                id: 8,
-                question: "Cave paintings indicate:",
-                options: [
-                  "Written language",
-                  "Artistic expression and possibly religious rituals",
-                  "Mathematical knowledge",
-                  "Trade records",
-                ],
-                correct: 1,
-                explanation:
-                  "Cave paintings suggest artistic expression and possibly religious or ritualistic practices.",
-              },
-            ],
-          },
-          {
-            id: 3,
-            unitId: 1,
-            title: "Prehistoric Art",
-            duration: "5m",
-            type: "lesson",
-            mcqs: 6,
-            content:
-              "Prehistoric art in India is best represented by the cave paintings of Bhimbetka in Madhya Pradesh, which date back to approximately 30,000 years ago. These paintings depict hunting scenes, dancing, and daily life activities using natural pigments.\n\nThe colors used include red ochre, white chalk, and green made from plant extracts. Animals like bison, deer, elephants, and tigers are commonly depicted. Human figures are shown in dynamic poses, suggesting movement and activity.\n\nRock art has been found across India - from Kashmir to Tamil Nadu. The art evolved from simple geometric patterns in the Paleolithic period to more complex narrative scenes in the Mesolithic period, and eventually to agricultural themes in the Neolithic period.",
-            questions: [
-              {
-                id: 1,
+                id: 11,
                 question: "Bhimbetka cave paintings are located in:",
                 options: ["Rajasthan", "Madhya Pradesh", "Gujarat", "Maharashtra"],
                 correct: 1,
@@ -222,7 +165,7 @@ export const sampleData = {
                   "Bhimbetka is located in Madhya Pradesh and is a UNESCO World Heritage Site.",
               },
               {
-                id: 2,
+                id: 12,
                 question: "Bhimbetka paintings date back to approximately:",
                 options: [
                   "10,000 years ago",
@@ -235,7 +178,7 @@ export const sampleData = {
                   "The cave paintings at Bhimbetka date back to approximately 30,000 years ago.",
               },
               {
-                id: 3,
+                id: 13,
                 question: "Which color was NOT commonly used in prehistoric paintings?",
                 options: ["Red ochre", "White chalk", "Blue pigment", "Green from plant extracts"],
                 correct: 2,
@@ -243,7 +186,7 @@ export const sampleData = {
                   "Blue pigment was not available. Artists used red ochre, white chalk, and green from plant extracts.",
               },
               {
-                id: 4,
+                id: 14,
                 question: "Paleolithic period art was characterized by:",
                 options: [
                   "Complex narrative scenes",
@@ -256,7 +199,7 @@ export const sampleData = {
                   "Paleolithic art featured simple geometric patterns, which evolved into more complex scenes in later periods.",
               },
               {
-                id: 5,
+                id: 15,
                 question: "Mesolithic period rock art showed:",
                 options: [
                   "Simple geometric patterns",
@@ -269,7 +212,7 @@ export const sampleData = {
                   "Mesolithic art evolved from simple geometric patterns to more complex narrative scenes depicting daily life.",
               },
               {
-                id: 6,
+                id: 16,
                 question: "Neolithic period art primarily featured:",
                 options: [
                   "Hunting scenes",
@@ -281,20 +224,71 @@ export const sampleData = {
                 explanation:
                   "Neolithic art evolved to show agricultural themes as communities transitioned to farming.",
               },
-            ],
-          },
-          {
-            id: 4,
-            unitId: 1,
-            title: "Practice Sheet 1",
-            duration: "15m",
-            type: "practice",
-            mcqs: 8,
-            content:
-              "Practice questions covering Sources of Pre History, Pre-Historic Society, and Prehistoric Art.",
-            questions: [
               {
-                id: 1,
+                id: 17,
+                question: "Division of labor in prehistoric society was primarily between:",
+                options: [
+                  "Rich and poor",
+                  "Men and women",
+                  "Elders and youth",
+                  "Leaders and followers",
+                ],
+                correct: 1,
+                explanation:
+                  "Men primarily hunted while women gathered plant foods, roots, and fruits.",
+              },
+              {
+                id: 18,
+                question: "Fossils and skeletal remains are classified as:",
+                options: [
+                  "Archaeological sources",
+                  "Geological sources",
+                  "Biological sources",
+                  "Anthropological sources",
+                ],
+                correct: 2,
+                explanation:
+                  "Fossils and skeletal remains are biological sources that help understand prehistoric life forms and human evolution.",
+              },
+              {
+                id: 19,
+                question: "Megalithic structures are associated with which type of source?",
+                options: ["Geological", "Biological", "Archaeological", "Anthropological"],
+                correct: 2,
+                explanation:
+                  "Megalithic structures (large stone structures) are archaeological sources that provide evidence of prehistoric burial practices and social organization.",
+              },
+              {
+                id: 20,
+                question: "Rock formations and soil layers are which type of prehistoric source?",
+                options: ["Archaeological", "Geological", "Biological", "Anthropological"],
+                correct: 1,
+                explanation:
+                  "Geological sources include rock formations and soil layers that provide context for prehistoric habitation and environmental conditions.",
+              },
+              {
+                id: 21,
+                question: "Prehistoric people primarily lived in:",
+                options: ["Stone houses", "Caves and temporary shelters", "Mud villages", "Boats"],
+                correct: 1,
+                explanation:
+                  "Prehistoric communities lived in caves or temporary shelters as they were nomadic.",
+              },
+              {
+                id: 22,
+                question: "Cave paintings indicate:",
+                options: [
+                  "Written language",
+                  "Artistic expression and possibly religious rituals",
+                  "Mathematical knowledge",
+                  "Trade records",
+                ],
+                correct: 1,
+                explanation:
+                  "Cave paintings suggest artistic expression and possibly religious or ritualistic practices.",
+              },
+              {
+                id: 23,
                 question: "Which archaeological site is famous for prehistoric cave paintings?",
                 options: ["Mohenjo-daro", "Bhimbetka", "Hunsgi", "Mehrgarh"],
                 correct: 1,
@@ -302,65 +296,12 @@ export const sampleData = {
                   "Bhimbetka in Madhya Pradesh is famous for its prehistoric cave paintings dating back 30,000 years.",
               },
               {
-                id: 2,
+                id: 24,
                 question: "The term 'pre-history' means:",
                 options: ["Before humans", "Before writing", "Before agriculture", "Before cities"],
                 correct: 1,
                 explanation:
                   "Pre-history refers to the period before the invention of writing systems.",
-              },
-              {
-                id: 3,
-                question: "Which period saw the development of microliths?",
-                options: ["Palaeolithic", "Mesolithic", "Neolithic", "Chalcolithic"],
-                correct: 1,
-                explanation:
-                  "Microliths (tiny stone tools) are characteristic of the Mesolithic period.",
-              },
-              {
-                id: 4,
-                question: "The earliest evidence of dog domestication comes from:",
-                options: ["Palaeolithic", "Mesolithic", "Neolithic", "Chalcolithic"],
-                correct: 1,
-                explanation:
-                  "The earliest evidence of dog domestication comes from the Mesolithic period.",
-              },
-              {
-                id: 5,
-                question: "Burzahom is a site associated with which age?",
-                options: ["Palaeolithic", "Mesolithic", "Neolithic", "Chalcolithic"],
-                correct: 2,
-                explanation:
-                  "Burzahom in Kashmir is an important Neolithic site known for pit dwellings.",
-              },
-              {
-                id: 6,
-                question: "Black-and-red ware pottery is associated with:",
-                options: ["Palaeolithic", "Mesolithic", "Neolithic", "Chalcolithic"],
-                correct: 3,
-                explanation:
-                  "Black-and-red ware pottery is a distinctive feature of the Chalcolithic period.",
-              },
-              {
-                id: 7,
-                question: "The Neolithic Revolution refers to:",
-                options: [
-                  "Discovery of fire",
-                  "Transition to agriculture",
-                  "Invention of writing",
-                  "Use of metals",
-                ],
-                correct: 1,
-                explanation:
-                  "The Neolithic Revolution was the transition from hunting-gathering to agriculture.",
-              },
-              {
-                id: 8,
-                question: "Which period used both copper and stone tools?",
-                options: ["Palaeolithic", "Mesolithic", "Neolithic", "Chalcolithic"],
-                correct: 3,
-                explanation:
-                  "The Chalcolithic (Copper-Stone) Age marks the use of copper alongside stone tools.",
               },
             ],
           },
@@ -373,6 +314,46 @@ export const sampleData = {
             mcqs: 8,
             content:
               "The Palaeolithic Age (Old Stone Age) spans from approximately 2.5 million years ago to about 10,000 BCE. It is characterized by the use of rough, unpolished stone tools made by chipping and flaking.\n\nThe Palaeolithic period is divided into three phases: Lower Palaeolithic (hand axes, cleavers, choppers found at Sohan Valley, Belan Valley), Middle Palaeolithic (flake tools, scrapers, borers found at Nevasa, Bhimbetka), and Upper Palaeolithic (blades, burins, scrapers found at Belan Valley, Son Valley).\n\nPalaeolithic humans were hunters and food-gatherers. They lived in caves and rock shelters, used fire, and had no knowledge of agriculture, pottery, or metals. Climate during this period fluctuated between glacial and inter-glacial phases, significantly affecting human migration patterns.",
+          },
+          {
+            id: 6,
+            unitId: 1,
+            title: "Mesolithic Age",
+            duration: "10m",
+            type: "lesson",
+            mcqs: 8,
+            content:
+              "The Mesolithic Age (Middle Stone Age) dates from approximately 10,000 BCE to 8,000 BCE. This transitional period saw the development of microliths - tiny stone tools that were often hafted onto wooden or bone handles.\n\nImportant Mesolithic sites in India include Bagor (Rajasthan), Adamgarh (Madhya Pradesh), and Langhnaj (Gujarat). The climate became warmer, and humans began domesticating animals - the earliest evidence of dog domestication comes from this period.\n\nMesolithic communities showed evidence of both hunting-gathering and early food production. Burial sites from this period suggest increasingly complex social and religious practices. The rock paintings at Bhimbetka from the Mesolithic period show more sophisticated artistic techniques.",
+          },
+          {
+            id: 7,
+            unitId: 1,
+            title: "Neolithic Age",
+            duration: "8m",
+            type: "lesson",
+            mcqs: 8,
+            content:
+              "The Neolithic Age (New Stone Age) began around 8,000 BCE and is characterized by polished stone tools, the development of agriculture, and the establishment of permanent settlements.\n\nKey Neolithic sites in India include Burzahom and Gufkral (Kashmir), Chirand (Bihar), Koldihwa and Mahagara (UP), and Piklihal and Hallur (Karnataka). The people of Burzahom lived in pit dwellings and used bone tools alongside polished stone implements.\n\nThe Neolithic Revolution - the transition from hunting-gathering to agriculture - was one of the most significant transformations in human history. People began cultivating wheat, barley, rice, and ragi. Pottery making began, and communities settled near river valleys. Domestication of cattle, sheep, and goats provided a stable food supply.",
+          },
+          {
+            id: 8,
+            unitId: 1,
+            title: "Chalcolithic Age",
+            duration: "7m",
+            type: "lesson",
+            mcqs: 8,
+            content:
+              "The Chalcolithic Age (Copper-Stone Age) marks the transition between the Stone Age and the Bronze Age, approximately 3000-1500 BCE. People began using copper alongside stone tools.\n\nMajor Chalcolithic cultures in India include: Ahar-Banas culture (Rajasthan), Kayatha culture (Madhya Pradesh), Malwa culture, Jorwe culture (Maharashtra), and Prabhas and Ranger cultures (Gujarat).\n\nChalcolithic communities practiced agriculture and animal husbandry. They lived in rectangular and circular houses made of mud, wattle, and daub. Black-and-red ware pottery is a distinctive feature of this period. Evidence suggests trade networks existed between different Chalcolithic communities. Burial practices included burying the dead within the habitation area, often with pottery and personal ornaments.",
+          },
+          {
+            id: 9,
+            unitId: 1,
+            title: "Practice Sheet 2",
+            duration: "15m",
+            type: "practice",
+            mcqs: 24,
+            content:
+              "Practice questions covering Palaeolithic Age, Mesolithic Age, Neolithic Age, and Chalcolithic Age.",
             questions: [
               {
                 id: 1,
@@ -439,39 +420,6 @@ export const sampleData = {
               },
               {
                 id: 7,
-                question: "The climate during the Palaeolithic fluctuated between:",
-                options: [
-                  "Wet and dry",
-                  "Glacial and inter-glacial",
-                  "Hot and cold",
-                  "Windy and calm",
-                ],
-                correct: 1,
-                explanation:
-                  "The Palaeolithic period experienced alternating glacial (ice age) and inter-glacial phases.",
-              },
-              {
-                id: 8,
-                question: "Nevasa is an important site for which Palaeolithic phase?",
-                options: ["Lower", "Middle", "Upper", "All phases"],
-                correct: 1,
-                explanation:
-                  "Nevasa in Maharashtra is an important Middle Palaeolithic site with flake tools and scrapers.",
-              },
-            ],
-          },
-          {
-            id: 6,
-            unitId: 1,
-            title: "Mesolithic Age",
-            duration: "10m",
-            type: "lesson",
-            mcqs: 8,
-            content:
-              "The Mesolithic Age (Middle Stone Age) dates from approximately 10,000 BCE to 8,000 BCE. This transitional period saw the development of microliths - tiny stone tools that were often hafted onto wooden or bone handles.\n\nImportant Mesolithic sites in India include Bagor (Rajasthan), Adamgarh (Madhya Pradesh), and Langhnaj (Gujarat). The climate became warmer, and humans began domesticating animals - the earliest evidence of dog domestication comes from this period.\n\nMesolithic communities showed evidence of both hunting-gathering and early food production. Burial sites from this period suggest increasingly complex social and religious practices. The rock paintings at Bhimbetka from the Mesolithic period show more sophisticated artistic techniques.",
-            questions: [
-              {
-                id: 1,
                 question: "The Mesolithic Age is also known as:",
                 options: ["Old Stone Age", "Middle Stone Age", "New Stone Age", "Copper Age"],
                 correct: 1,
@@ -479,7 +427,7 @@ export const sampleData = {
                   "Mesolithic means 'Middle Stone Age', a transitional period between Palaeolithic and Neolithic.",
               },
               {
-                id: 2,
+                id: 8,
                 question: "Microliths are:",
                 options: ["Large stone tools", "Tiny stone tools", "Metal tools", "Bone tools"],
                 correct: 1,
@@ -487,7 +435,7 @@ export const sampleData = {
                   "Microliths are tiny stone tools that were often hafted onto wooden or bone handles.",
               },
               {
-                id: 3,
+                id: 9,
                 question: "Bagor is an important Mesolithic site in:",
                 options: ["Madhya Pradesh", "Gujarat", "Rajasthan", "Bihar"],
                 correct: 2,
@@ -495,7 +443,7 @@ export const sampleData = {
                   "Bagor on the Kothari river in Rajasthan is one of the largest Mesolithic sites in India.",
               },
               {
-                id: 4,
+                id: 10,
                 question: "The earliest evidence of dog domestication comes from:",
                 options: ["Palaeolithic", "Mesolithic", "Neolithic", "Chalcolithic"],
                 correct: 1,
@@ -503,7 +451,7 @@ export const sampleData = {
                   "The earliest evidence of dog domestication dates to the Mesolithic period.",
               },
               {
-                id: 5,
+                id: 11,
                 question: "During the Mesolithic, the climate became:",
                 options: ["Colder", "Warmer", "Drier", "More unpredictable"],
                 correct: 1,
@@ -511,7 +459,7 @@ export const sampleData = {
                   "The climate became warmer during the Mesolithic, ending the last glacial period.",
               },
               {
-                id: 6,
+                id: 12,
                 question: "Adamgarh is located in:",
                 options: ["Rajasthan", "Madhya Pradesh", "Gujarat", "Karnataka"],
                 correct: 1,
@@ -519,40 +467,7 @@ export const sampleData = {
                   "Adamgarh in Madhya Pradesh is an important Mesolithic site with evidence of animal domestication.",
               },
               {
-                id: 7,
-                question: "Mesolithic communities practiced:",
-                options: [
-                  "Only hunting",
-                  "Only agriculture",
-                  "Both hunting-gathering and early food production",
-                  "Only fishing",
-                ],
-                correct: 2,
-                explanation:
-                  "Mesolithic communities showed evidence of both hunting-gathering and early food production.",
-              },
-              {
-                id: 8,
-                question: "Langhnaj is a Mesolithic site in:",
-                options: ["Rajasthan", "Madhya Pradesh", "Gujarat", "Tamil Nadu"],
-                correct: 2,
-                explanation:
-                  "Langhnaj in Gujarat is an important Mesolithic site with microlithic tools and animal remains.",
-              },
-            ],
-          },
-          {
-            id: 7,
-            unitId: 1,
-            title: "Neolithic Age",
-            duration: "8m",
-            type: "lesson",
-            mcqs: 8,
-            content:
-              "The Neolithic Age (New Stone Age) began around 8,000 BCE and is characterized by polished stone tools, the development of agriculture, and the establishment of permanent settlements.\n\nKey Neolithic sites in India include Burzahom and Gufkral (Kashmir), Chirand (Bihar), Koldihwa and Mahagara (UP), and Piklihal and Hallur (Karnataka). The people of Burzahom lived in pit dwellings and used bone tools alongside polished stone implements.\n\nThe Neolithic Revolution - the transition from hunting-gathering to agriculture - was one of the most significant transformations in human history. People began cultivating wheat, barley, rice, and ragi. Pottery making began, and communities settled near river valleys. Domestication of cattle, sheep, and goats provided a stable food supply.",
-            questions: [
-              {
-                id: 1,
+                id: 13,
                 question: "The Neolithic Age is characterized by:",
                 options: [
                   "Rough stone tools",
@@ -565,7 +480,7 @@ export const sampleData = {
                   "The Neolithic Age featured polished stone tools, agriculture, and permanent settlements.",
               },
               {
-                id: 2,
+                id: 14,
                 question: "Burzahom is located in:",
                 options: ["Bihar", "Kashmir", "Karnataka", "Uttar Pradesh"],
                 correct: 1,
@@ -573,7 +488,7 @@ export const sampleData = {
                   "Burzahom is an important Neolithic site in Kashmir known for pit dwellings and bone tools.",
               },
               {
-                id: 3,
+                id: 15,
                 question: "People of Burzahom lived in:",
                 options: ["Caves", "Pit dwellings", "Wooden houses", "Stone castles"],
                 correct: 1,
@@ -581,7 +496,7 @@ export const sampleData = {
                   "The people of Burzahom lived in pit dwellings - underground or semi-underground structures.",
               },
               {
-                id: 4,
+                id: 16,
                 question: "The Neolithic Revolution refers to:",
                 options: [
                   "Discovery of fire",
@@ -594,7 +509,7 @@ export const sampleData = {
                   "The Neolithic Revolution was the fundamental shift from food-gathering to food-producing.",
               },
               {
-                id: 5,
+                id: 17,
                 question: "Which crop was NOT cultivated during the Neolithic?",
                 options: ["Wheat", "Rice", "Cotton", "Barley"],
                 correct: 2,
@@ -602,7 +517,7 @@ export const sampleData = {
                   "Wheat, barley, rice, and ragi were cultivated. Cotton cultivation came much later.",
               },
               {
-                id: 6,
+                id: 18,
                 question: "Chirand is a Neolithic site in:",
                 options: ["Kashmir", "Bihar", "Karnataka", "Madhya Pradesh"],
                 correct: 1,
@@ -610,35 +525,7 @@ export const sampleData = {
                   "Chirand in Bihar is an important Neolithic site with evidence of early agriculture.",
               },
               {
-                id: 7,
-                question: "Koldihwa and Mahagara are located in:",
-                options: ["Bihar", "Karnataka", "Uttar Pradesh", "Rajasthan"],
-                correct: 2,
-                explanation:
-                  "Koldihwa and Mahagara in Uttar Pradesh are important Neolithic sites with evidence of rice cultivation.",
-              },
-              {
-                id: 8,
-                question: "Which animal was NOT domesticated during the Neolithic?",
-                options: ["Cattle", "Sheep", "Horses", "Goats"],
-                correct: 2,
-                explanation:
-                  "Cattle, sheep, and goats were domesticated during the Neolithic. Horse domestication came later.",
-              },
-            ],
-          },
-          {
-            id: 8,
-            unitId: 1,
-            title: "Chalcolithic Age",
-            duration: "7m",
-            type: "lesson",
-            mcqs: 8,
-            content:
-              "The Chalcolithic Age (Copper-Stone Age) marks the transition between the Stone Age and the Bronze Age, approximately 3000-1500 BCE. People began using copper alongside stone tools.\n\nMajor Chalcolithic cultures in India include: Ahar-Banas culture (Rajasthan), Kayatha culture (Madhya Pradesh), Malwa culture, Jorwe culture (Maharashtra), and Prabhas and Ranger cultures (Gujarat).\n\nChalcolithic communities practiced agriculture and animal husbandry. They lived in rectangular and circular houses made of mud, wattle, and daub. Black-and-red ware pottery is a distinctive feature of this period. Evidence suggests trade networks existed between different Chalcolithic communities. Burial practices included burying the dead within the habitation area, often with pottery and personal ornaments.",
-            questions: [
-              {
-                id: 1,
+                id: 19,
                 question: "The Chalcolithic Age is also known as:",
                 options: ["Iron Age", "Copper-Stone Age", "Bronze Age", "Gold Age"],
                 correct: 1,
@@ -646,7 +533,7 @@ export const sampleData = {
                   "Chalcolithic means 'Copper-Stone Age', marking the use of copper alongside stone tools.",
               },
               {
-                id: 2,
+                id: 20,
                 question: "Ahar-Banas culture is associated with:",
                 options: ["Madhya Pradesh", "Maharashtra", "Rajasthan", "Gujarat"],
                 correct: 2,
@@ -654,7 +541,7 @@ export const sampleData = {
                   "Ahar-Banas culture is a major Chalcolithic culture found in Rajasthan.",
               },
               {
-                id: 3,
+                id: 21,
                 question: "Black-and-red ware pottery is distinctive of:",
                 options: ["Palaeolithic", "Mesolithic", "Neolithic", "Chalcolithic"],
                 correct: 3,
@@ -662,14 +549,14 @@ export const sampleData = {
                   "Black-and-red ware pottery is a distinctive feature of Chalcolithic cultures in India.",
               },
               {
-                id: 4,
+                id: 22,
                 question: "Jorwe culture is found in:",
                 options: ["Rajasthan", "Madhya Pradesh", "Maharashtra", "Gujarat"],
                 correct: 2,
                 explanation: "Jorwe culture is an important Chalcolithic culture of Maharashtra.",
               },
               {
-                id: 5,
+                id: 23,
                 question: "Chalcolithic people lived in houses made of:",
                 options: ["Stone", "Mud, wattle, and daub", "Bricks", "Wood only"],
                 correct: 1,
@@ -677,27 +564,7 @@ export const sampleData = {
                   "Chalcolithic people lived in rectangular and circular houses made of mud, wattle, and daub.",
               },
               {
-                id: 6,
-                question: "Kayatha culture is associated with:",
-                options: ["Rajasthan", "Madhya Pradesh", "Maharashtra", "Gujarat"],
-                correct: 1,
-                explanation: "Kayatha culture is a Chalcolithic culture found in Madhya Pradesh.",
-              },
-              {
-                id: 7,
-                question: "Chalcolithic burial practices included:",
-                options: [
-                  "Cremation only",
-                  "Burying within habitation area",
-                  "Sky burial",
-                  "Sea burial",
-                ],
-                correct: 1,
-                explanation:
-                  "Chalcolithic people buried the dead within the habitation area, often with pottery and ornaments.",
-              },
-              {
-                id: 8,
+                id: 24,
                 question: "The Chalcolithic Age dates approximately from:",
                 options: ["5000-3000 BCE", "3000-1500 BCE", "1500-1000 BCE", "1000-500 BCE"],
                 correct: 1,
