@@ -166,12 +166,12 @@ const HomePage: Component = () => {
             Your Subjects
           </h2>
           <button
-            onClick={() => navigate("/upload")}
+            disabled
             aria-label="Add new subject"
-            class="flex items-center justify-center gap-2 px-4 py-2.5 bg-brand text-brand-foreground rounded-xl shadow-lg shadow-brand/20 active:scale-95 hover:brightness-110 transition-all focus:ring-2 focus:ring-brand focus:ring-offset-2 font-bold"
+            class="flex items-center justify-center gap-2 px-4 py-2.5 bg-muted text-muted-foreground rounded-xl border border-border cursor-not-allowed font-bold"
           >
             <Plus size={18} strokeWidth={2.5} />
-            <span class="hidden sm:inline text-sm">Add Subject</span>
+            <span class="hidden sm:inline text-sm">Add Subject (WIP)</span>
           </button>
         </div>
 

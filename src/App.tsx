@@ -10,12 +10,12 @@ import LessonPage from "./pages/LessonPage";
 import StatsPage from "./pages/StatsPage";
 import ProgressPage from "./pages/ProgressPage";
 import UploadPage from "./pages/UploadPage";
+import QuizPage from "./pages/QuizPage";
 
 const seedData = () => {
-  if (!localStorage.getItem("edutrack_subjects")) {
-    const subjects = [{ ...sampleData, id: "1" }];
-    localStorage.setItem("edutrack_subjects", JSON.stringify(subjects));
-  }
+  localStorage.clear();
+  const subjects = [{ ...sampleData, id: "1" }];
+  localStorage.setItem("edutrack_subjects", JSON.stringify(subjects));
 };
 
 seedData();
@@ -33,7 +33,7 @@ const App: Component = () => {
         <SimpleRoute path="/learn" component={() => <LearnPage />} />
         <SimpleRoute path="/course/:subjectId" component={() => <CoursePage />} />
         <SimpleRoute path="/lesson/:subjectId/:lessonId" component={() => <LessonPage />} />
-        <SimpleRoute path="/quiz/:subjectId/:lessonId" component={() => <div>Quiz Page</div>} />
+        <SimpleRoute path="/quiz/:subjectId/:lessonId" component={() => <QuizPage />} />
         <SimpleRoute path="/stats/:subjectId" component={() => <StatsPage />} />
         <SimpleRoute path="/progress" component={() => <ProgressPage />} />
         <SimpleRoute path="/upload" component={() => <UploadPage />} />

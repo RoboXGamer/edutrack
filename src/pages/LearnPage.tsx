@@ -73,11 +73,11 @@ const LearnPage: Component = () => {
             </p>
           </div>
           <button
-            onClick={() => navigate("/upload")}
-            class="hidden sm:flex bg-brand text-brand-foreground px-4 py-2 rounded-xl font-bold shadow-lg shadow-brand/20 hover:brightness-110 transition-all active:scale-95 items-center gap-2 text-sm"
+            disabled
+            class="hidden sm:flex bg-muted text-muted-foreground px-4 py-2 rounded-xl font-bold border border-border cursor-not-allowed items-center gap-2 text-sm"
           >
             <Plus size={18} />
-            <span>New Subject</span>
+            <span>New Subject (WIP)</span>
           </button>
         </div>
       </div>
@@ -93,10 +93,10 @@ const LearnPage: Component = () => {
                 Upload a PDF to create your first personal learning course
               </p>
               <button
-                onClick={() => navigate("/upload")}
-                class="bg-brand text-brand-foreground px-6 py-3 md:px-8 md:py-4 rounded-xl font-bold shadow-lg shadow-brand/20 hover:brightness-110 transition-all active:scale-95 flex items-center mx-auto text-sm md:text-base"
+                disabled
+                class="bg-muted text-muted-foreground px-6 py-3 md:px-8 md:py-4 rounded-xl font-bold border border-border cursor-not-allowed flex items-center mx-auto text-sm md:text-base"
               >
-                <Plus size={20} class="mr-1.5" /> Upload Subject
+                <Plus size={20} class="mr-1.5" /> Upload Subject (WIP)
               </button>
             </div>
           }
