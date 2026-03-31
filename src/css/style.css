@@ -28,9 +28,9 @@
 }
 
 :root {
-  --brand: #3d6de6;
+  --brand: #1375e1;
   --brand-foreground: #ffffff;
-  --brand-light: #e4ecfb;
+  --brand-light: #dbeafe;
   --background: #eaedf2;
   --foreground: #1c1e23;
   --card: #ffffff;
@@ -42,13 +42,13 @@
   --success-foreground: #ffffff;
   --warning: #e88a20;
   --warning-foreground: #ffffff;
-  --ring: #3d6de6;
+  --ring: #1375e1;
   --safe-area-bottom: env(safe-area-inset-bottom);
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --brand: #5b8def;
+    --brand: #1375e1;
     --brand-foreground: #ffffff;
     --brand-light: #1e2d4a;
     --background: #0a0c10;

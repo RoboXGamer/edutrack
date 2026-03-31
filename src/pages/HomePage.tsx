@@ -140,8 +140,6 @@ const HomePage: Component = () => {
         </div>
 
         <div class="bg-brand rounded-2xl p-4 lg:p-5 text-brand-foreground shadow-card-hover relative overflow-hidden sm:col-span-2 lg:col-span-1">
-          <div class="absolute -right-8 -bottom-8 w-32 h-32 bg-brand-foreground/10 rounded-full blur-2xl"></div>
-          <div class="absolute -left-4 -top-4 w-24 h-24 bg-brand-foreground/5 rounded-full blur-xl"></div>
           <div class="relative z-10 h-full flex flex-col justify-between">
             <div>
               <h3 class="text-lg lg:text-xl font-bold mb-1 capitalize">Level 4: Explorer</h3>
