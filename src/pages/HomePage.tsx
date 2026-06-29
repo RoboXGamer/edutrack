@@ -90,7 +90,7 @@ const HomePage: Component = () => {
       <header class="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-3 sm:gap-4">
         <div class="flex-1">
           <h1 class="text-2xl sm:text-3xl md:text-4xl font-extrabold text-foreground tracking-tight">
-            EduTrack
+            StudyLive
           </h1>
           <p class="text-muted-foreground text-xs sm:text-sm italic mt-1 max-w-md">
             {getDailyQuote()}

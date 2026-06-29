@@ -2,6 +2,8 @@ import { type Component, createTrackedEffect } from "solid-js";
 import { SimpleRouter, SimpleRoute } from "./router";
 import { SplashScreen } from "@capacitor/splash-screen";
 import { sampleData } from "./data/sampleData";
+import type { Subject } from "./lib/types";
+import { getJSON, saveSubjects, storageKeys } from "./lib/storage";
 
 import HomePage from "./pages/HomePage";
 import LearnPage from "./pages/LearnPage";
@@ -12,13 +14,15 @@ import ProgressPage from "./pages/ProgressPage";
 import UploadPage from "./pages/UploadPage";
 import QuizPage from "./pages/QuizPage";
 
-const seedData = () => {
-  localStorage.clear();
-  const subjects = [{ ...sampleData, id: "1" }];
-  localStorage.setItem("edutrack_subjects", JSON.stringify(subjects));
+const initializeData = () => {
+  const existingSubjects = getJSON<Subject[]>(storageKeys.subjects, [] as Subject[]);
+  if (existingSubjects.length === 0) {
+    const subjects = [{ ...(sampleData as Subject), id: "1" }] as Subject[];
+    saveSubjects(subjects);
+  }
 };
 
-seedData();
+initializeData();
 
 const App: Component = () => {
   createTrackedEffect(() => {

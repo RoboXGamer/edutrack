@@ -1,5 +1,6 @@
 import { createSignal, type Component, For, Show, createTrackedEffect } from "solid-js";
 import { useNavigate } from "../router";
+import { getJSON, storageKeys } from "../lib/storage";
 import { Plus, ChevronRight } from "../components/Icons";
 import BottomNav from "../components/BottomNav";
 
@@ -39,14 +40,11 @@ const LearnPage: Component = () => {
   const [subjects, setSubjects] = createSignal<any[]>([]);
 
   createTrackedEffect(() => {
-    const stored = localStorage.getItem("edutrack_subjects");
-    if (stored) {
-      setSubjects(JSON.parse(stored));
-    }
+    setSubjects(getJSON<any[]>(storageKeys.subjects, []));
   });
 
   const getProgress = (subject: any) => {
-    const progress = JSON.parse(localStorage.getItem("edutrack_progress") || "{}");
+    const progress = getJSON<Record<string, any>>(storageKeys.progress, {});
     const subjectProgress = progress[subject.id] || {};
     const readLessons = subjectProgress.readLessons || [];
     const totalLessons = subject.courseData.units.reduce(

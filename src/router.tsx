@@ -1,20 +1,31 @@
 import { createSignal, createMemo, JSX } from "solid-js";
 
-// Simple signal-based router for SolidJS 2.0+
-const [currentPath, setCurrentPath] = createSignal(window.location.hash.slice(1) || "/");
+const getCurrentPath = () => {
+  if (typeof window === "undefined") return "/";
+  const hash = window.location.hash;
+  if (hash && hash.startsWith("#")) {
+    return hash.slice(1) || "/";
+  }
+  return window.location.pathname || "/";
+};
 
-// Listen for hash changes
-window.addEventListener("hashchange", () => {
-  const path = window.location.hash.slice(1) || "/";
-  setCurrentPath(path);
-});
+const [currentPath, setCurrentPath] = createSignal(getCurrentPath());
+
+const updatePath = () => setCurrentPath(getCurrentPath());
+
+window.addEventListener("hashchange", updatePath);
+window.addEventListener("popstate", updatePath);
 
 export function useNavigate() {
   return (path: string | number) => {
     if (typeof path === "number") {
       window.history.go(path);
-    } else {
-      window.location.hash = path;
+      return;
+    }
+
+    const normalized = path.startsWith("#") ? path : `#${path}`;
+    if (window.location.hash !== normalized) {
+      window.location.hash = normalized;
     }
   };
 }
@@ -27,21 +38,34 @@ export function useLocation() {
   };
 }
 
-export function useParams() {
-  // Basic param extractor for patterns like /course/:id
-  const path = currentPath();
-  const parts = path.split("/").filter(Boolean);
+const matchPath = (route: string, current: string) => {
+  if (route === current) return true;
 
-  // We'll manual parse common patterns since this is a simple router
+  const routeSegments = route.split("/").filter(Boolean);
+  const currentSegments = current.split("/").filter(Boolean);
+  if (routeSegments.length !== currentSegments.length) return false;
+
+  return routeSegments.every((segment, index) => {
+    return segment.startsWith(":") || segment === currentSegments[index];
+  });
+};
+
+export function useParams() {
+  const path = currentPath();
+  const segments = path.split("/").filter(Boolean);
   const params: Record<string, string> = {};
 
   if (path.startsWith("/course/")) {
-    params.subjectId = parts[1];
-  } else if (path.startsWith("/lesson/") || path.startsWith("/quiz/")) {
-    params.subjectId = parts[1];
-    params.lessonId = parts[2];
-  } else if (path.startsWith("/stats/")) {
-    params.subjectId = parts[1];
+    params.subjectId = segments[1] || "";
+  }
+
+  if (path.startsWith("/lesson/") || path.startsWith("/quiz/")) {
+    params.subjectId = segments[1] || "";
+    params.lessonId = segments[2] || "";
+  }
+
+  if (path.startsWith("/stats/")) {
+    params.subjectId = segments[1] || "";
   }
 
   return params;
@@ -53,15 +77,7 @@ interface RouteProps {
 }
 
 export function SimpleRoute(props: RouteProps) {
-  const isVisible = createMemo(() => {
-    const path = currentPath();
-    // Exact match or prefix match for routes with params
-    if (props.path.includes(":")) {
-      const pattern = props.path.split("/").filter(Boolean)[0];
-      return path.startsWith("/" + pattern);
-    }
-    return path === props.path;
-  });
+  const isVisible = createMemo(() => matchPath(props.path, currentPath()));
 
   return (
     <div style={{ display: isVisible() ? "block" : "none" }}>
