@@ -1,69 +1,56 @@
-## Created with Capacitor Create App
+# EduTrack
 
-This app was created using [`@capacitor/create-app`](https://github.com/ionic-team/create-capacitor-app) and uses Solid + Vite for the web layer.
+A mobile-first learning and quiz app for competitive exam preparation, built with SolidJS 2 + Capacitor 8.
 
-### Build an Android debug APK
+## Features
 
-These are the exact steps used to produce a debug APK from this repository. Run them from the project root.
+- **Home Dashboard** — Overall stats, daily goal tracker, XP/level system, streak tracking, subject search
+- **Course Browser** — Expandable unit/lesson trees with completion tracking per subject
+- **Lesson Reader** — Full text reader with scroll-based progress bar, mark-as-read, daily goal sync
+- **Quiz Engine** — Multi-step flow: intro screen → interactive questions → results with animated ring chart, grade/message, retry with best-score tracking, fallback question generator
+- **Statistics** — Per-subject completion %, average quiz score, unit breakdown
+- **Global Progress** — All subjects aggregated, today's activity, streak history
+- **Subject Upload** — Create subjects manually or from pre-built templates (Medieval History, Indian Polity)
 
-1. Install dependencies (this project uses pnpm):
+## Tech Stack
 
-```bash
-pnpm install --config.confirmModulesPurge=false
-```
+| Layer | Tech |
+|---|---|
+| UI | SolidJS 2 beta |
+| Mobile | Capacitor 8 (Android APK built) |
+| Build | Vite + vite-plus |
+| CSS | Tailwind CSS v4 |
+| Icons | Custom inline SVG (20 icons) |
+| Routing | Custom hash-based SPA router |
+| Persistence | localStorage |
+| Types | TypeScript strict |
 
-2. Build the web assets (this project uses `vp`, provided by `vite-plus`):
-
-```bash
-pnpm run build
-```
-
-3. Add or install the Capacitor Android platform (only required once):
-
-```bash
-pnpm add -D @capacitor/android
-npx cap add android
-```
-
-4. Sync Capacitor to copy the built web assets into the Android project:
-
-```bash
-npx cap sync android
-npx cap copy android
-```
-
-5. Ensure Android SDK and JDK are available on the machine. Create or update `android/local.properties` with your SDK path if it's not already set. Example (Windows):
-
-```
-sdk.dir=C:\Users\YOUR_USER\Documents\AndroidSDK
-```
-
-6. Build the Android debug APK with the Gradle wrapper (run in the `android` folder):
-
-On Windows (recommended environment for this repo):
+## Getting Started
 
 ```bash
-cd android
-gradlew.bat assembleDebug
+pnpm install
+pnpm dev
 ```
 
-Or using the included Unix-style wrapper from a bash environment:
+## Build Android APK
 
 ```bash
-./gradlew assembleDebug
+pnpm build:android
 ```
 
-7. Output APK location:
+## Pages
 
-```
-android/app/build/outputs/apk/debug/app-debug.apk
-```
+- `/` — Dashboard
+- `/learn` — Subject catalog
+- `/course/:subjectId` — Unit/lesson tree
+- `/lesson/:subjectId/:lessonId` — Lesson reader
+- `/quiz/:subjectId/:lessonId` — Quiz engine
+- `/stats/:subjectId` — Per-subject stats
+- `/progress` — Global progress
+- `/upload` — Create subjects
 
-Notes and troubleshooting
+## Included Content
 
-- If Gradle fails with "SDK location not found", either set an `ANDROID_HOME`/`ANDROID_SDK_ROOT` environment variable or add `android/local.properties` with `sdk.dir` pointing to your SDK.
-- If Gradle fails because Java is missing, install a JDK and set `JAVA_HOME` to the JDK install directory.
-- For a release-signed APK you must provide a keystore and add a signing configuration to `android/app/build.gradle` (or use Android Studio's "Generate Signed Bundle / APK" wizard). I can add the signing configuration if you provide the keystore and passwords.
-- If you prefer using Android Studio, open the `android` folder (`npx cap open android`) and build/sign from there.
-
-If you want, I can add a `scripts` entry to package.json to automate these steps or help with creating a release signing configuration.
+- Ancient History (1 unit, 9 lessons including 2 practice sheets with 24 questions each)
+- Medieval History (template)
+- Indian Polity (template)
