@@ -1,6 +1,6 @@
 {
   "appId": "com.creativeminds.studyboost",
-  "appName": "studyboost",
+  "appName": "EduTrack",
   "webDir": "dist",
   "plugins": {
     "SplashScreen": {
